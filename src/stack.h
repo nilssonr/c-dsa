@@ -1,13 +1,36 @@
-#ifndef STACK_H
-#define STACK_H
+#ifndef DSA_STACK_H
+#define DSA_STACK_H
 
-typedef struct Stack {
-    int *items;
-    int size;
-} Stack;
+// Define the stack structure
+// 'items' is a pointer to the array that will store the stack elements
+// 'size' represents the current number of elements in the stack
+typedef struct {
+  int *items;  // Dynamic array to hold stack elements
+  int size;    // Number of elements currently in the stack
+} dsa_stack_t;
 
-Stack *stack_init(int size);
-void stack_push(Stack *stack, int value);
-int stack_pop(Stack *stack);
+// Function to initialize a stack with a specified size
+// Allocates memory for the stack and initializes the stack properties
+dsa_stack_t *dsa_stack_init(int size);
+
+// Function to check if the stack is full
+// Returns 1 if the stack is full, 0 otherwise
+int dsa_stack_is_full(dsa_stack_t *stack);
+
+// Function to check if the stack is empty
+// Returns 1 if the stack is empty, 0 otherwise
+int dsa_stack_is_empty(dsa_stack_t *stack);
+
+// Function to push an element onto the stack
+// If the stack is not full, the value is added to the top of the stack
+void dsa_stack_push(dsa_stack_t *stack, int value);
+
+// Function to pop an element from the stack
+// Removes and returns the top element if the stack is not empty
+int dsa_stack_pop(dsa_stack_t *stack);
+
+// Function to peek at the top element of the stack without removing it
+// Returns the top element of the stack
+int dsa_stack_peek(dsa_stack_t *stack);
 
 #endif
