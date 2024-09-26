@@ -66,11 +66,10 @@ void delete_last(linked_list *list) {
         current = current->next;
     }
 
+    free(list->tail);
     current->next = NULL;
     list->tail = current;
     list->length--;
-
-    free(list->tail);
 }
 
 int length(linked_list *list) {
