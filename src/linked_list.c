@@ -26,12 +26,16 @@ int length(linked_list *list) {
     return list->length;
 }
 
-void dump(linked_list *list) {
+int *dump(linked_list *list) {
     node *current = list->head;
+    int *result = (int *)malloc(length(list) * sizeof(int));
+    int i = 0;
+
     while (current != NULL) {
-        printf("Value: %d\n", current->value);
+        result[i] = current->value;
         current = current->next;
+        i++;
     }
 
-    printf("NULL\n");
+    return result;
 }

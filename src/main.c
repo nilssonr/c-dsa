@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "linked_list.h"
 
@@ -14,7 +15,11 @@ int main(void) {
     insert_end(&list, 4);
 
     printf("Length: %d\n", length(&list));
-    dump(&list);
+    int* result = dump(&list);
+    for (int i = 0; i < length(&list); i++) {
+        printf("Value: %d\n", result[i]);
+    }
+    free(result);
 
     return 0;
 }
