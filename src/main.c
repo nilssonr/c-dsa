@@ -13,6 +13,10 @@ int main(void) {
     insert_end(&list, 2);
     insert_end(&list, 3);
     insert_end(&list, 4);
+    insert_start(&list, 5);
+    delete_first(&list);
+    insert_start(&list, 6);
+    delete_last(&list);
 
     printf("Length: %d\n", length(&list));
     int* result = dump(&list);

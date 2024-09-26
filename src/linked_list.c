@@ -4,6 +4,16 @@
 #include <stdlib.h>
 
 void insert_start(linked_list *list, int value) {
+    node *new_node = (node *)malloc(sizeof(node));
+    new_node->value = value;
+    new_node->next = list->head;
+    list->head = new_node;
+
+    if (list->length == 0) {
+        list->tail = new_node;
+    }
+
+    list->length++;
 }
 
 void insert_end(linked_list *list, int value) {
@@ -20,6 +30,47 @@ void insert_end(linked_list *list, int value) {
     }
 
     list->length++;
+}
+
+void delete_first(linked_list *list) {
+    if (list->length == 0) {
+        return;
+    }
+
+    node *old_node = list->head;
+    list->head = old_node->next;
+
+    if (list->head == NULL) {
+        list->tail = NULL;
+    }
+
+    list->length--;
+    free(old_node);
+}
+
+void delete_last(linked_list *list) {
+    if (list->length == 0) {
+        return;
+    }
+
+    if (list->head == list->tail) {
+        free(list->head);
+        list->head = NULL;
+        list->tail = NULL;
+        list->length = 0;
+        return;
+    }
+
+    node *current = list->head;
+    while (current->next != list->tail) {
+        current = current->next;
+    }
+
+    current->next = NULL;
+    list->tail = current;
+    list->length--;
+
+    free(list->tail);
 }
 
 int length(linked_list *list) {

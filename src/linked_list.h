@@ -16,6 +16,8 @@ typedef struct linked_list {
 
 void insert_start(linked_list *list, int value);
 void insert_end(linked_list *list, int value);
+void delete_first(linked_list *list);
+void delete_last(linked_list *list);
 int length(linked_list *list);
 int *dump(linked_list *list);
 
