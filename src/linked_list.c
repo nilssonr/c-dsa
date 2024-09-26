@@ -3,8 +3,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void insert_start(linked_list *list, int value) {
-    node *new_node = (node *)malloc(sizeof(node));
+LinkedList *ll_init() {
+    LinkedList *list = (LinkedList *)malloc(sizeof(LinkedList));
+    list->head = NULL;
+    list->tail = NULL;
+    list->length = 0;
+
+    return list;
+}
+
+void ll_insert_start(LinkedList *list, int value) {
+    Node *new_node = (Node *)malloc(sizeof(Node));
     new_node->value = value;
     new_node->next = list->head;
     list->head = new_node;
@@ -16,8 +25,8 @@ void insert_start(linked_list *list, int value) {
     list->length++;
 }
 
-void insert_end(linked_list *list, int value) {
-    node *new_node = (node *)malloc(sizeof(node));
+void ll_insert_end(LinkedList *list, int value) {
+    Node *new_node = (Node *)malloc(sizeof(Node));
     new_node->value = value;
     new_node->next = NULL;
 
@@ -32,12 +41,12 @@ void insert_end(linked_list *list, int value) {
     list->length++;
 }
 
-void delete_first(linked_list *list) {
+void ll_delete_first(LinkedList *list) {
     if (list->length == 0) {
         return;
     }
 
-    node *old_node = list->head;
+    Node *old_node = list->head;
     list->head = old_node->next;
 
     if (list->head == NULL) {
@@ -48,7 +57,7 @@ void delete_first(linked_list *list) {
     free(old_node);
 }
 
-void delete_last(linked_list *list) {
+void ll_delete_last(LinkedList *list) {
     if (list->length == 0) {
         return;
     }
@@ -61,7 +70,7 @@ void delete_last(linked_list *list) {
         return;
     }
 
-    node *current = list->head;
+    Node *current = list->head;
     while (current->next != list->tail) {
         current = current->next;
     }
@@ -72,13 +81,13 @@ void delete_last(linked_list *list) {
     list->length--;
 }
 
-int length(linked_list *list) {
+int ll_length(LinkedList *list) {
     return list->length;
 }
 
-int *dump(linked_list *list) {
-    node *current = list->head;
-    int *result = (int *)malloc(length(list) * sizeof(int));
+int *ll_dump(LinkedList *list) {
+    Node *current = list->head;
+    int *result = (int *)malloc(ll_length(list) * sizeof(int));
     int i = 0;
 
     while (current != NULL) {
